@@ -9,7 +9,9 @@ Ideas for exercises, course contents etc. should be posted as an issue prefixed 
 
 ## Main Repository structure
 The repository follows a strict structure:
-* **templates/** contains needed templates for LaTeX
+* **templates/** contains needed templates for the initialization of courses
+  * **latex/** contains latex templates
+  * **html/** contains HTML templates
 * Each course has its seperate folder. Courses that build upon each other or concern the same topic may share a folder (e.g. "Introduction to C programming" and "Advanced C programming" might share the course "C programming")
 
 ## Course folder structure
