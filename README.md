@@ -6,6 +6,7 @@ In this repository you find the course materials for courses organized by the st
 Although, in the following the term *course* is used, it refers as well to workshops, talks etc.
 For referencing, folder naming etc. course names should always be given in *all_lower_snake_case*.
 Ideas for exercises, course contents etc. should be posted as an issue prefixed with the course name.
+While working on a course pleas do so on a seperate branch.
 
 ## Main Repository structure
 The repository follows a strict structure:
