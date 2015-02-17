@@ -2,6 +2,8 @@
 
 # this script is used to initialize the folders for a new course
 
+TEMPLATE_DIR="./templates"
+
 # helper function to reduce code duplication
 # terminates the programm with an error message
 # Usage: abort "mymessage"
@@ -29,10 +31,24 @@ fi
 
 mkdir $COURSE_NAME
 mkdir "$COURSE_NAME/slides"
+mkdir "$COURSE_NAME/slides/examples"
 mkdir "$COURSE_NAME/exercises"
 mkdir "$COURSE_NAME/latex"
 mkdir "$COURSE_NAME/latex/img"
 mkdir "$COURSE_NAME/latex/slides"
 mkdir "$COURSE_NAME/latex/exercises"
+mkdir "$COURSE_NAME/info"
+mkdir "$COURSE_NAME/info/html"
+mkdir "$COURSE_NAME/info/html/img"
+
+# copy template files
+
+if [ -d $TEMPLATE_DIR ]
+then
+	cp -r "$TEMPLATE_DIR/html/*" "$COURSE_NAME/info/html/"
+	cp -r "$TEMPLATE_DIR/latex/*" "$COURSE_NAME/latex/"
+else
+	echo "Template directory missing, no files where copied."
+fi
 
 echo "Done."
