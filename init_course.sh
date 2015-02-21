@@ -4,6 +4,8 @@
 
 TEMPLATE_DIR="./templates"
 TEMPLATE_HTML_DESCRIPTION="course_description_template.html"
+TEMPLATE_LATEX_SLIDES="slides_template.tex"
+TEMPLATE_LATEX_INFO="course_info.tex"
 
 # helper function to reduce code duplication
 # terminates the programm with an error message
@@ -62,7 +64,17 @@ then
 	mkdir "$COURSE_DIR/info"
 	mkdir "$COURSE_DIR/info/html"
 	mkdir "$COURSE_DIR/info/html/img"
+
+	# copy the latex templates
+	cp "$TEMPLATE_DIR/latex/$TEMPLATE_LATEX_SLIDES" \
+	"$COURSE_DIR/latex/slides/$TEMPLATE_LATEX_SLIDES"
 fi
+
+# customize the course_info.tex
+# and write it to the desired position
+sed "s/COURSE..NAME/$COURSE_NAME/g" \
+	"$TEMPLATE_DIR/latex/$TEMPLATE_LATEX_INFO" \
+	> "$COURSE_DIR/latex/slides/$COURSE_NAME""_info.tex"
 
 # customize the description html template 
 # and write it to the desired position
@@ -71,4 +83,6 @@ sed "s/COURSE_NAME/$COURSE_NAME/g" \
 	> "$COURSE_DIR/info/html/$COURSE_NAME"".html"
 
 echo "Done."
-echo "Please do not forget to fill in the description HTML file."
+echo "Please do not forget to fill in "
+echo "\t1) $COURSE_DIR/info/html/$COURSE_NAME"".html"
+echo "\t2) $COURSE_DIR/latex/slides/$COURSE_NAME""_info.tex"
