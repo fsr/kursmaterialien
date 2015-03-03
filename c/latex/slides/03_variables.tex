@@ -88,9 +88,10 @@ int a, b = 23;
 		\item stored as specified in \textit{IEEE 754 Standard} TL;DR
 		\item special values for $\infty$, $-\infty$, NaN
 		\item useful for fractions and very large numbers
+		\item type a decimal point instead of a comma!
 	\end{itemize}
 \end{frame}
-\begin{frame}{Characters}
+\begin{frame}[fragile]{Characters}
 	\begin{itemize}
 		\item keyword: \textit{char}
 		\item can be \textit{signed}(default) or \textit{unsigned}
@@ -98,11 +99,12 @@ int a, b = 23;
 		\item length: 8 bit (on almost every architechture)
 		\item intended to represent a symbol
 		\item stores its \textit{ASCII} code number (e.g. 'A' $\Rightarrow$ 65)
-		\item printable range: 32 to 126 
-		\item see google.com for more information about \textit{ASCII}
+		\item you can define a char either by its ASCII code number or by its symbol:
 	\end{itemize}
-	\ \\\ \\\uncover<2->{And what about Strings???????????}
-	\uncover<3->{ - easy, we'll get that later.}
+	\begin{lstlisting}[numbers=none]
+char a = 65;
+char b = 'A';	/* use single quotation marks */
+\end{lstlisting}
 \end{frame}
 \section{Identifiers}
 \subsection{}
@@ -145,16 +147,29 @@ volume = (1 / 3) * length * length * height;
 \begin{frame}[fragile]{The true power of printf}
 	The string you pass to \textit{printf} can contain placeholders:
 	\begin{lstlisting}[numbers=none]
-int a = 3;
-float b = 7,4;
-printf("a: %d\nb: %f\n", a, b);
+int a = 3, b = 5;
+float c = 7.4;
+printf("a: %d\n", a);
+printf("b: %d\nc: %f\n", b, c);
 \end{lstlisting}
 Output:\begin{lstlisting}[numbers=none]
 a: 3
-b: 4.7
+b: 5
+c: 4.7
 \end{lstlisting}
 You can insert any amount of placeholders. For each placeholder, you have to pass a value of the corresponding type.
 \end{frame}
-
+\begin{frame}{Example placeholders}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{type} & \textbf{description} & \textbf{type of argument} \\\hline
+		\%c & single character & char, int (if $<=$ 255) \\\hline
+		\%d & decimal number & char, int \\\hline
+		\%u & unsigned decimal number & unsigned char, unsigned char \\\hline
+		\%X & hexadecimal number & char, int \\\hline
+		\%ld & long decimal number & long \\\hline
+		\%f & floating point number & float, double \\\hline
+	\end{tabular}
+\end{frame}
 % nothing to do from here on
 \end{document}
