@@ -79,7 +79,7 @@ int a, b = 23;
 		\item stored as a binary number with fixed length
 		\item can be \textit{signed}(default) or \textit{unsigned} 
 		\item range: 0 to $2^{length}-1$ (unsigned) or $-2^{length}$ to $2^{length-1}-1$(signed)
-		\item actual length of \textit{int}, \textit{short}, \textit{long} depends on architechture
+		\item actual size of \textit{int}, \textit{short}, \textit{long} depends on architechture
 	\end{itemize}
 \end{frame}
 \begin{frame}{Floating point numbers}
@@ -95,8 +95,8 @@ int a, b = 23;
 	\begin{itemize}
 		\item keyword: \textit{char}
 		\item can be \textit{signed}(default) or \textit{unsigned}
-		\item range: 0 to 255(unsigned) or -128 to 127 (signed)	
-		\item length: 8 bit (on almost every architechture)
+		\item range: 0 to 255 (unsigned) or -128 to 127 (signed)	
+		\item size: 8 bit (on almost every architechture)
 		\item intended to represent a symbol
 		\item stores its \textit{ASCII} code number (e.g. 'A' $\Rightarrow$ 65)
 		\item you can define a char either by its ASCII code number or by its symbol:
@@ -170,6 +170,35 @@ You can insert any amount of placeholders. For each placeholder, you have to pas
 		\%ld & long decimal number & long \\\hline
 		\%f & floating point number & float, double \\\hline
 	\end{tabular}
+\end{frame}
+\begin{frame}[fragile]{Hello again!}
+	Write a program that prints the String "Hello World!" on the command line, using only placeholders in the format string.
+	\begin{uncoverenv}<2->
+		\begin{lstlisting}
+#include <stdio.h>
+
+int main(int argc, char* argv[]) {
+	char H = 'H', e = 'e', l = 'l', o = 'o', space = ' ',
+		 W = 'w', r = 'r', d = 'd', excl = '!', nl = '\n';
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c", H, e, l, l, o,
+			space, W, o, r, l, d, excl, nl);
+	return 0;
+}
+\end{lstlisting}
+	\end{uncoverenv}
+\end{frame}
+\begin{frame}[fragile]{Exploring ASCII}
+	Write a program that prints out a few characters and their ASCII code numbers.
+	\begin{uncoverenv}<2->
+		\begin{lstlisting}
+#include <stdio.h>
+
+int main(int argc, char* argv[]) {
+	printf("%c: %d\n%c: %d\n", 'c', 'c', '!', '!');
+	return 0;
+}
+\end{lstlisting}
+	\end{uncoverenv}
 \end{frame}
 % nothing to do from here on
 \end{document}
