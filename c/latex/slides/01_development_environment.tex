@@ -40,13 +40,13 @@
 \subsection{GNU compiler collection}
 \begin{frame}[fragile]{Installing gcc}
 	Ubuntu / Debian: 
-	\begin{lstlisting}
-		apt-get install gcc
-	\end{lstlisting}
+	\begin{lstlisting}[numbers=none]
+apt-get install gcc
+\end{lstlisting}
 	Arch:
-	\begin{lstlisting}
-	pacman -S gcc
-	\end{lstlisting}
+	\begin{lstlisting}[numbers=none]
+pacman -S gcc
+\end{lstlisting}
 	... and you're done ;-)
 \end{frame}
 \section{Windows}
@@ -70,21 +70,21 @@
 		\item Fill it as follows:
 	\end{itemize}
 	\begin{lstlisting}
-		#include <stdio.h>
-		
-		int main() {
-		    printf("Hello World!\n");
-		    /* Print "Hello World!" on the command line */
-		}
-	\end{lstlisting}
+#include <stdio.h>
+
+int main() {
+	printf("Hello World!\n");
+	/* Print "Hello World!" on the command line */
+}
+\end{lstlisting}
 \end{frame}
 \begin{frame}[fragile]{From source to bits}
 	\centering
 	Source code\\\ \\
 	$\Downarrow$\\\ \\
-	\begin{lstlisting}
-	gcc main.c
-	\end{lstlisting}
+	\begin{lstlisting}[numbers=none]
+gcc main.c
+\end{lstlisting}
 	\ \\\ \\
 	$\Downarrow$\\\ \\
 	executable program (\textbf{a.out})\\
@@ -93,14 +93,14 @@
 	\begin{columns}[T]
 		\column{.5\textwidth}
 		\textbf{Linux}\\
-		\begin{lstlisting}
-			./a.out
-		\end{lstlisting}
+		\begin{lstlisting}[numbers=none]
+./a.out
+\end{lstlisting}
 		\column{.5\textwidth}
 		\textbf{Windows}\\
-		\begin{lstlisting}
-			a.exe
-		\end{lstlisting}
+		\begin{lstlisting}[numbers=none]
+a.exe
+\end{lstlisting}
 	\end{columns}
 \end{frame}
 % nothing to do from here on
