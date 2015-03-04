@@ -23,7 +23,7 @@
 \section{Overview}
 \subsection{}
 \begin{frame}[fragile]{Let's calc}
-	Each time you're writing a value or a variable, it gets evaluated as an expression. You can use operators to make new expressions out of existing ones.
+	Each time you type in a value or a variable, it gets evaluated as an expression. You can use operators to make new expressions out of existing ones.
 	\begin{lstlisting}[numbers=none]
 3;	/* value 3 */
 int a = 5; /* value 5 */
@@ -39,15 +39,15 @@ Got the idea?\\
 		\item +, -, *, / as all of you should know
 		\item \% is the modulo (remainder) operator
 		\item *, /, \% get evaluated before +, -
-		\item operations in (  ) are of highest priority
+		\item operations in (  ) are of higher precedence
 	\end{itemize}
 	\ \\\ \\Something to try out and think about:
 	\begin{lstlisting}[numbers=none]
 char a = 120;	/* 120 */
-char b = 2 * a;	/* not 240 */
+2 * a;	/* not 240 */
 \end{lstlisting}
 \end{frame}
-\begin{frame}[fragile]{But it's not that easy}
+\begin{frame}[fragile]{You see, it's not that easy}
 	\begin{itemize}
 		\item You shall not devide integers by zero
 		\item Integer division differs from floating point division
@@ -85,7 +85,7 @@ i1 / f;		/* result is float, actual division */
 \begin{frame}[fragile]{Do not get confused}
 	Imagine the following
 	\begin{lstlisting}[numbers=none]
-(5 < 7) == 1;	/* evaluated to 1 */
+(5 < 7) =@\,@= 1;	/* evaluated to 1 */
 \end{lstlisting}
 \ \\\ \\Why?
 \begin{itemize}
@@ -107,56 +107,60 @@ i1 / f;		/* result is float, actual division */
 	! \ $>$ \ \&\& \ $>$ \ $||$ 
 \end{frame}
 \begin{frame}[fragile]{Seems logic}
-	How do you get NAND and NOR?
+	How do you get NAND, NOR and XOR?
 	\begin{uncoverenv}<2->
 		\begin{lstlisting}[numbers=none]
 int a, b;
 ...
 !(a && b);	/* NAND */
 !(a || b);	/* NOR */
+a != b;		/* XOR */
 \end{lstlisting}
 	\end{uncoverenv}
 \end{frame}
-\section{Advanced assignments}
+\section{More on assignments}
 \subsection{}
 \begin{frame}[fragile]{A sign meant...}
 	We already know the assignment operator.\\
 	Assignments are expressions, too, and expressions can be assigned to variables.\\\ \\
+	The general syntax is:	\textit{$<$identifier$>$ = $<$expression$>$}\\\ \\
 	
 	\begin{uncoverenv}<2->
 		Consider:
 		\begin{lstlisting}[numbers=none]
-int c;
-c = 0;	/* false */
-c = 1;	/* true */
-c = 2 * 5; /* (2 * 5) evaluates to 10, c is 10 */
-c = (0 < 1); /* (0 < 1) evaluates to true, c is 1 */
+c = 0;				/* false */
+c = 2 * 5;			/* (2 * 5) evaluates to 10, c is 10 */
+c = (0 < 1);		/* (0 < 1) evaluates to true, c is 1 */
+
+a = (b =@\,@= (c = d));	/* Wat? */
 \end{lstlisting}
 	\end{uncoverenv}
 \end{frame}
-\begin{frame}[fragile]{Short, shorter, C++}
-	C offers short forms for recursive operations.\\
-	Consider adding 4 to a variable or multiply it by 2:
+\begin{frame}[fragile]{Syntatic sugar}
+	It is common that the expression on the right side of an assignment contains the variable it is assigned to.\\
+	To avoid redundancy, C offers the following short forms:\\\ \\
 	\begin{lstlisting}[numbers=none]
-int a = 42, b = 2;
 a = a + 4;	/* old and busted */
-a += 4;		/* new hotness */
-a *= b;
-\end{lstlisting}
-	You can do this with \textbf{-=, /=, \%=} simultanously.\\
-	\ \\To increment (add 1) and decrement a variable, there is an even shorter shortform:
-	\begin{lstlisting}[numbers=none]
-int C = 42;
-C++;	/* c += 1; */
-++C;	/* c += 1; */
-C--;	/* c -= 1; */
+a += 4;		/* new hotness, a = a + 4; */
+a -= 4;		/* a = a - 4; */
+a *= b;		/* a = a * b; */
+c /= 42;	/* c = c / 42; */
+d %= 2;		/* d = d % 2; */
 \end{lstlisting}
 \end{frame}
-\begin{frame}[fragile]{The difference between C++ and ++C}
+\begin{frame}[fragile]{C++}
+	To increment (+1) and decrement (-1) a variable, there is an even shorter shortform:
+	\begin{lstlisting}[numbers=none]
+int C = 42;
+C++;	/* C += 1; */
+++C;	/* C += 1; */
+C--;	/* C -= 1; */
+\end{lstlisting}
+\ \\\ \\C++ expressions are evaluated before the increment while ++C increments first (the same applies on C$--$):
 	\begin{lstlisting}[numbers=none]
 int C = 42;
 int a = C++;	/* a is 42 */
-int b = ++C;	/* b is 43 */
+int b = ++C;	/* b is 44 */
 \end{lstlisting}
 \end{frame}
 % nothing to do from here on
