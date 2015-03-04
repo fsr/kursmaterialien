@@ -1,0 +1,65 @@
+\input{slides_template}	% nothing to do here
+\input{c_introduction_info} % TODO modify this if you have not already done so
+
+% meta-information
+\newcommand{\topic}{
+	User input
+}
+
+% nothing to do here
+\title{\topic}
+\supertitle{\course}
+\date{\today}
+
+% the actual document
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Contents}
+	\tableofcontents
+\end{frame}
+
+\section{Reading user input}
+\subsection{}
+\begin{frame}[fragile]{scanf()}
+	scanf() is another useful function from the standard library.
+	\begin{itemize}
+		\item Like \textit{printf()}, it is declared in \textit{stdio.h}
+		\item Like \textit{printf()}, it has a format string with placeholders
+		\item You can use it to read values of primitive datatypes from the command line
+	\end{itemize}
+	\ \\ \ \\ Example:
+	\begin{lstlisting}[numbers=none]
+int i;
+scanf("%d", &i);	
+\end{lstlisting}
+	After calling \textit{scanf()}, the program waits for the user to input a value in the command line.
+	After pressing \textit{return} that value is stored into \textit{i}.
+\end{frame}
+\begin{frame}{Note:}
+	\begin{itemize}
+		\item \textit{scanf()} uses the same placeholders as \textit{printf()}
+		\item You must type an \textit{\&} before each variable you pass \\ (we will explain that later)
+		\item If you read a number (using \%d, \%u etc.), interpretation
+		\begin{itemize}
+			\item starts at first digit
+			\item ends before last non digit character
+		\end{itemize}
+		\item If you use \%c, the first character of the user input is interpreted (this may be a ' ' as well!)
+	\end{itemize}
+	Never trust the user: they may enter a blank line while you expect a number, which means your input variable is still undefined!
+		
+\end{frame}
+\section{Exercise}
+\subsection{}
+\begin{frame}{The stage is yours}
+	\begin{itemize}
+		\item Write a Program that asks the user for two decimal numbers and prints their sum, difference, product, integer quotient and remainder.
+		\item Write a Program that asks the user for 5 characters and prints them in reversed order.
+		\item Write a Program that calculates the area of a circle.\\(Let's assume $\pi$ == 3.14)
+	\end{itemize}
+\end{frame}
+
+% nothing to do from here on
+\end{document}
