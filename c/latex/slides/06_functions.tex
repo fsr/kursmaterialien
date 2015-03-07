@@ -1,4 +1,4 @@
-input{slides_template}  % nothing to do here
+\input{slides_template}  % nothing to do here
 \input{c_introduction_info} % TODO modify this if you have not already done so
 
 % meta-information
@@ -20,9 +20,25 @@ input{slides_template}  % nothing to do here
     \tableofcontents
 \end{frame}
 
-\section{Mesed up}
+\section{Motivation}
 \subsection{}
-\begin{frame}[fragile]{}
+\begin{frame}[fragile]{A simple game}
+	Write a simple hangman game! Everytime the player is wrong,
+	add a new part to the gallows / the hanging man and print it to the terminal:
+	\begin{lstlisting}[numbers=none]
+       -----    
+       |/  o 
+       |  ^W^
+       |  / \
+       |     
+     -----   
+    /     \
+   /       \
+===============
+\end{lstlisting}
+	
+	Since you aren't able to deal with strings yet, choose a number the player has to guess.
+	After each try, print if the player's suggestion was too high, too low or correct.
 
 \end{frame}
 \begin{frame}
@@ -32,12 +48,6 @@ input{slides_template}  % nothing to do here
 \begin{frame}
 
 \end{frame}
-
-\section{Global and local}
-
-\section{main}
-
-\section{Exercises}
 
 
 % nothing to do from here on
