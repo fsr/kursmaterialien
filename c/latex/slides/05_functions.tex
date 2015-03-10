@@ -5,11 +5,20 @@
 \newcommand {\topic}{
     Functions
 }
+\usepackage{tikz}
+\usepackage[absolute,overlay]{textpos}
+
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+
+\lstset{
+  moredelim=**[is][\only<+(1)>{\color{red}}]{§}{§},
+}
 
 % nothing to do here
 \title{\topic}
 \supertitle{\course}
-\date{\today}
+\date{}
 
 % the actual document
 \begin{document}
@@ -67,27 +76,55 @@ Function fib(int n):
 \section{Functions in C}
 \subsection{}
 \begin{frame}[fragile]{Defining functions}
-	\begin{lstlisting}[numbers=none]
-<return type(1)> <identifier(2)>(<argument list(3)>) {
-	<function body(4)>
-	return <expression(5)>;
+	\begin{columns}[T]
+		\column{.33\textwidth}<2->
+		data type of the returned value or \textit{void}, if nothing is returned
+		\column{.33\textwidth}<3->
+		unique name to refer the function, same rules as for variable identifiers
+		\column{.34\textwidth}<4->
+		parameter declarations, seperated by commas (e.g. \textit{int a, char b})
+	\end{columns}
+	\begin{textblock}{7}(1.5,3.5)
+		\begin{tikzpicture}[x=1.2cm,y=.5cm]
+			\only<2>{\draw[red] (-.3,0) edge[out=270,in=90,->,shorten >=0ex] (0,-2);}
+			\uncover<3->{\draw (-.3,0) edge[out=270,in=90,->,shorten >=0ex] (0,-2);}
+			\only<3>{\draw[red] (3.5,0) edge[out=270,in=90,->,shorten >=0ex] (2.25,-2);}
+			\uncover<4->{\draw (3.5,0) edge[out=270,in=90,->,shorten >=0ex] (2.25,-2);}
+			\only<4>{\draw[red] (7,0) edge[out=270,in=90,->,shorten >=.0ex] (4.5,-2);}
+			\uncover<5->{\draw (7,0) edge[out=270,in=90,->,shorten >=.0ex] (4.5,-2);}
+		\end{tikzpicture}
+	\end{textblock}
+	\ \\\ \\\ \\
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\small]
+§return_type§ §identifier§(§argument_list§) {
+	§function_body§
+	return §expression§;
 }
 \end{lstlisting}
-	\begin{itemize}
-		\item (1): data type of the returned value or \textit{void}, if nothing is returned
-		\item (2): unique name to refer the function, same rules as for variable identifiers
-		\item (3): parameter declarations seperated by commas (e.g. \textit{int a, char b})
-		\item (4): just as in \textit{main()}, all statements are put in here
-		\item (5): value this function returns or empty, if the return value is \textit{void}
-	\end{itemize}
+	\	\\\	\\\ \\
+	\begin{columns}[T]
+		\column{.5\textwidth}<5->
+		just as in \textit{main()}, all statements are put in here
+		\column{.5\textwidth}<6->
+		value this function returns or empty, if the return value is \textit{void}
+	\end{columns}
+	\begin{textblock}{7}(.5,5.2)
+		\begin{tikzpicture}
+			\only<5>{\draw[red] (1.5,0) edge[out=90,in=180,->,shorten >=0ex] (0,2);}
+			\uncover<6->{\draw (1.5,0) edge[out=90,in=180,->,shorten >=0ex] (0,2);}
+			\only<6>{\draw[red] (8,0) edge[out=90,in=270,->,shorten >=0ex] (2.4,1.5);}
+			\uncover<7->{\draw (8,0) edge[out=90,in=270,->,shorten >=0ex] (2.4,1.5);}
+		\end{tikzpicture}
+	\end{textblock}
 \end{frame}
 \begin{frame}[fragile]{Example (1)}
 	The function that calculates \textit{fib(5)} and prints it directly:
 	\begin{lstlisting}
 void fib_5() {
+	int i, fib1, fib2;
 	for (i = 0, fib1 = 0, fib2 = 1; i < 5; i++) {
-		int buffer = fib 1;
-		fib 1 = fib2;
+		int buffer = fib1;
+		fib1 = fib2;
 		fib2 = fib2 + buffer;
 	}
 	printf("fib(%d) = %d\n", i, fib1);
@@ -99,10 +136,11 @@ void fib_5() {
 \begin{frame}[fragile]{Example (2)}
 	The function that calculates \textit{fib(n)} and returns the result:
 	\begin{lstlisting}
-int fib(n) {
+int fib(int n) {
+	int i, fib1, fib2;
 	for (i = 0, fib1 = 0, fib2 = 1; i < n; i++) {
-		int buffer = fib 1;
-		fib 1 = fib2;
+		int buffer = fib1;
+		fib1 = fib2;
 		fib2 = fib2 + buffer;
 	}
 	return fib1;
@@ -159,28 +197,22 @@ int main(int argc, char* argv[]) {
 \end{frame}
 \section{Scopes}
 \subsection{}
-\begin{frame}{TODO Move to 02\_Variables}
-	In C programs, each identifier has its own scope where it may be used. In the rest of the program, it is invalid and refering it will cause compilation errors. \\
-	The scope starts at the line the variable is declared and ends at the line the block, in which the variable was declared, ends. \\
-	Blocks begin with a '\{' and and with a '\}'
-	Überdeckungen!
-\end{frame}
 \begin{frame}[fragile]{Global variables}
 	\begin{itemize}
 		\item Variables defined outside any function
 		\item Scope: from line of declaration to end of program
 	\end{itemize}
 	\begin{lstlisting}
-int glob = 42;
+int globe = 42;
 
 void foo() {
-	glob = 23;
+	globe = 23;
 }
 
 int main(int argc, char* argv[]) {
-	printf("%d\n", a);	/* Prints 42 */
+	printf("%d\n", globe);	/* Prints 42 */
 	foo();
-	printf("%d\n", a);	/* Prints 23 */
+	printf("%d\n", globe);	/* Prints 23 */
 	...
 \end{lstlisting}
 	Altering them in one function may have \textbf{side effects} on other functions $\rightarrow$ use them rarely.
@@ -188,56 +220,61 @@ int main(int argc, char* argv[]) {
 \begin{frame}[fragile]{Where not to call functions}
 	Since a function's scope starts at the line of its definition, having two functions \textit{f()} and \textit{g()} calling each other is not possible:
 	\begin{lstlisting}
-void f() {
+void f(int i) {
 	...
-	g();	/* What is g? */
+	g(42);	/* What is g? */
 }
 
-void g() {
+void g(int i) {
 	...
-	f();
+	f(42);
 }
 \end{lstlisting}
 	In that case, \textit{g()} is called outside its scope. The other way does not work either.
 \end{frame}
 \begin{frame}[fragile]{Prototypes}
 	Like variables can also be \textit{declared}:
-	\begin{lstlisting}[numbers=none]
-<return type> <identifier>(<argument list>);
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
+return_type identifier(argument list);
 \end{lstlisting}
 	\begin{itemize}
 		\item It's similar to a definition, just replace the function body by a \textit{;}
 		\item Declared functions must also be defined any where in the program
-		\item In the argument list, only types matter $\rightarrow$ identifiers can be left out
+		\item In the argument list, only types matter $\rightarrow$ identifiers \textbf{can} be left out
 	\end{itemize}
 	\begin{lstlisting}
-void g();
+void g(int i);	/* better do not leave the identifier out */
 
-void f() {
+void f(int i) {
 	...
-	g();	/* Now a call of g() can be compiled */
+	g(42);		/* Now a call of g() can be compiled */
 }
 
-/* g() definition, similar to f() */
+void g(int i) {...}	/* g() definition, similar to f() */
 \end{lstlisting}
 \end{frame}
 \begin{frame}[fragile]{Better program structure}
 	To avoid problems like that above, it is a common practise to \textit{declare} all functions at the top of the file and define them below the main function:
 	\begin{lstlisting}
-void f();
-void g();
+void f(int i);
+void g(int i);
 
 int main(int argc, char* argv[]) {
 	...
 }
 
-void f() {
+void f(int i) {
 	...
-	g();
+	g(42);
 }
 
 /* g() definition, similar to f() */
 \end{lstlisting}
+\end{frame}
+\begin{frame}{Functions in functions}
+	You \textbf{could} define functions in functions.\footnotemark
+	
+	\footnotetext[1]{Just saying.}
 \end{frame}
 \section{Recursion}
 \subsection{}
@@ -260,7 +297,7 @@ void foo() {
 As an example, take a look at this function calculating $base^{exponent}$:
 	\begin{lstlisting}
 int power(int base, int exponent) {
-	if (exponent == 0)
+	if (exponent =@\,@= 0)
 		return 1;
 	return base * power(base, exponent - 1);
 }
@@ -272,20 +309,29 @@ int power(int base, int exponent) {
 \end{frame}
 \section{Exercise}
 \subsection{}
-\begin{frame}{TODO: non-recursive task}
-	Insert a task everybody can solve here.
+\begin{frame}{Saving lines in Calculator}
+	\begin{itemize}
+		\item Take the calculator task and unburden the switch by adding functions for each operation.\\
+		Now delete the \textit{substract} and the \textit{divide} function (and find a way the calculator works anyway).
+		\begin{itemize}
+			\item<2-> Hint: How can you substract through addition?
+			\item<3-> Hint: You can pass a statement as a parameter.
+		\end{itemize}
+		\item \textbf{Experts:} add the functionality to exponentiate.\\
+		Implement the \textit{exponentiate} function by calling the \textit{multiply} function.
+	\end{itemize}
 \end{frame}
 \begin{frame}{Practising recursion}
 	\begin{itemize}
 		\item Write a function that calculates the factorial of a given number \textit{n!}    recursively
 		\begin{itemize}
-			\item<2-> Hint: for what n is the result of \textit{n!} clear?
+			\item<2-> Hint: for which n is the result of \textit{n!} clear?
 			\item<3-> Hint: check for such \textit{n} at the start of the function!
 			\item<4-> Hint: for all other \textit{n}, you need a recursive call
 		\end{itemize}
 		\item \textbf{Experts:} The function shall calculate \textit{fib(n)} instead of \textit{n!}
 		\begin{itemize}
-			\item<2-> Hint: in one statement, you can call a function multiple times
+			\item<5-> Hint: in one statement, you can call a function multiple times
 		\end{itemize}
 	\end{itemize}
 \end{frame}
