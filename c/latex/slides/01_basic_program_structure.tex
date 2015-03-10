@@ -49,17 +49,25 @@ $ sudo pacman -S gcc
 \end{lstlisting} \ \\ \ \\
 	... and you're done ;-)
 \end{frame}
-
-\begin{frame}{MinGW}
-	
-\end{frame}
 \begin{frame}{cygwin}
-	
+	\begin{itemize}
+		\item Download installer from \textit{https://cygwin.com/install.html}
+		\item Run it
+		\begin{itemize}
+			\item "Install from Internet"
+			\item Choose your installation path
+			\item Choose path for installation files
+			\item "Direct Connection"
+			\item Choose a mirror
+			\item Important software already is selected
+			\item Optional: powerful editor "vim" in \textit{Editors}
+			\item Watching loading bars...
+			\item ???
+			\item Profit!
+		\end{itemize}
+		\item Use cygwin-console like a linux terminal
+	\end{itemize}
 \end{frame}
-\begin{frame}{Add compiler to system PATH}
-	
-\end{frame}
-
 \section{Hello World!}
 \subsection{}
 \begin{frame}[fragile]{The first program}
@@ -73,7 +81,8 @@ $ sudo pacman -S gcc
 
 int main(int argc, char* argv[]) {
 	printf("Hello World!\n");
-	/* Print "Hello World!" on the command line */
+	/* Print "Hello World!" on the
+	   command line */
 	return 0;
 }
 \end{lstlisting}
@@ -88,23 +97,11 @@ $ gcc main.c
 (Preprocessing, compiling, assembling, linking)
 	\ \\\ \\
 	$\Downarrow$\\\ \\
-	Executable program (\textbf{a.out})\\
-\end{frame}
-\begin{frame}[fragile]{It works!}
-	\begin{columns}[T]
-		\column{.5\textwidth}
-		\textbf{Linux}\\
-		\begin{lstlisting}[numbers=none]
+	Executable program (\textbf{a.out})\\\ \\
+			\begin{lstlisting}[numbers=none]
 $ ./a.out
 \end{lstlisting}
-		\column{.5\textwidth}
-		\textbf{Windows}\\
-		\begin{lstlisting}[numbers=none]
-> a.exe
-\end{lstlisting}
-	\end{columns}
 \end{frame}
-
 \section{Program structure}
 \subsection{}
 \begin{frame}[fragile]{A basic program}
@@ -116,7 +113,8 @@ $ ./a.out
 int main(int argc, char* argv[]) {
 
 	printf("Hello World!\n");
-	/* Print "Hello World!" on the command line */
+	/* Print "Hello World!" on the
+	   command line */
 
 	return 0;
 }
@@ -124,7 +122,7 @@ int main(int argc, char* argv[]) {
 		\column{.4\textwidth}
 		
 		\ \\$\left. \begin{array}{c}\\\end{array}\right\rbrace $ Preprocessor statements
-		\ \\\ \\$\left. \begin{array}{c}\\\\\\\\\\\end{array}\right\rbrace $ Main function
+		\ \\\ \\$\left. \begin{array}{c}\\\\\\\\\\\\\end{array}\right\rbrace $ Main function
 	\end{columns}
 \end{frame}
 \begin{frame}[fragile]{Preprocessor statements}	
@@ -164,7 +162,7 @@ int main(int argc, char* argv[]) {
 		\item contains all program statements
 		\item they are processed from top to bottom
 	\end{itemize}
-	\StartLineAt{8}
+	\StartLineAt{9}
 	\begin{lstlisting}
 	return 0;
 }
@@ -207,7 +205,7 @@ int main(int argc, char* argv[]) {
 	\StartLineAt{6}
 	\begin{lstlisting}
 	/* Print "Hello World!"
-	on the command line */
+	   on the command line */
 \end{lstlisting}
 	Better use of block comments:
 	\StartLineAt{6}
