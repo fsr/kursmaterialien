@@ -3,15 +3,18 @@
 
 % meta-information
 \usepackage{tikz}
+\usepackage{hyperref}
 \definecolor{orange}{RGB}{255,127,0}
 \newcommand{\topic}{
 	Arrays
 }
-
+\lstset{
+  moredelim=**[is][\only<+(1)->{\color{red}}]{§}{§},
+}
 % nothing to do here
 \title{\topic}
 \supertitle{\course}
-\date{\today}
+\date{}
 
 % the actual document
 \begin{document}
@@ -22,7 +25,7 @@
 	\tableofcontents
 \end{frame}
 
-\section{Overview}
+\section{Introduction}
 \subsection{}
 \begin{frame}[fragile]{Hello World explosion}
 	Remember the program that printed "Hello World!" by passing 13 chars to \textit{printf}?
@@ -41,7 +44,7 @@ eos et accusam et justo duo dolores et ea rebum.
 \begin{frame}{Let's talk about memory}
 	\begin{itemize}
 		\item Consider a program using 4 characters.
-		\item<3->{(Maybe it's a string saying "foo")}\\
+		\item<3->{(Maybe they're meant to say "foo!")}\\
 		\item<4->{Wouldn't it be nice to iterate through these chars?}
 	\end{itemize}
 	\begin{tikzpicture}[font=\scriptsize,x=1.4cm]
@@ -117,7 +120,7 @@ eos et accusam et justo duo dolores et ea rebum.
 			\draw (.25,2) -- (.25,2.6) node[above]{c1 = 'f';};
 			\draw (.75,2) -- (.75,2.2) node[above]{c2 = 'o';};
 			\draw (1.25,2) -- (1.25,2.6) node[above]{c3 = 'o';};
-			\draw (1.75,2) -- (1.75,2.2) node[above]{c4 = '\textbackslash0';};
+			\draw (1.75,2) -- (1.75,2.2) node[above]{c4 = '!';};
 		\end{uncoverenv}
 		
 		\begin{uncoverenv}<7->
@@ -145,7 +148,7 @@ eos et accusam et justo duo dolores et ea rebum.
 			\draw (.25,.9) -- (.25,.5) node[below]{c[0] = 'f';};
 			\draw (.75,.9) -- (.75,.1) node[below]{c[1] = 'o';};
 			\draw (1.25,.9) -- (1.25,.5) node[below]{c[2] = 'o';};
-			\draw (1.75,.9) -- (1.75,.1) node[below]{c[3] = '\textbackslash0';};
+			\draw (1.75,.9) -- (1.75,.1) node[below]{c[3] = '!';};
 		\end{uncoverenv}
 		
 		\begin{uncoverenv}<7->			
@@ -160,6 +163,203 @@ eos et accusam et justo duo dolores et ea rebum.
 	\end{tikzpicture}\\
 	\uncover<5->{C offers an opportunity to access variables through an index: Arrays}
 \end{frame}
+\section{Arrays}
+\subsection{}
+\begin{frame}[fragile]{Definition}
+	To only declare an array, you have to specify the size.
+	\begin{lstlisting}[numbers=none, basicstyle=\itshape\small]
+type identifier[size];
+\end{lstlisting}
+	You can leave the size out, by defining all elements. The compiler will count.
+	\begin{lstlisting}[numbers=none]
+int leet[] = {1, 3, 3, 7};
+\end{lstlisting}
+	You can define a single Element through its index.
+	\begin{lstlisting}[numbers=none]
+int leet[4];
+leet[0] = 1;
+leet[1] = 3;
+leet[2] = 3;
+leet[3] = 7;
+\end{lstlisting}
+	\textbf{Note:} The first index is 0, the last one is \textit{size} - 1
+\end{frame}
+\begin{frame}[fragile]{Access}
+	You access an Array element, like defining it, through its index.
+	\begin{lstlisting}[numbers=none]
+int leet[] = {1, 3, 3, 7};
+int sum = leet[0] + leet[1] + leet[2] + leet[3];
+\end{lstlisting}
+	You don't have to use a discrete number. It can be a statement to.
+	\begin{lstlisting}[numbers=none]
+int a = 0, b = 1, c = 2, d = 3;
+int leet[] = {1, 3, 3, 7};
+int sum = leet[a] + leet[b] + leet[c] + leet[c];
+\end{lstlisting}
+	\textbf{But}:
+	\begin{lstlisting}[numbers=none]
+int leet[] = {1, 3, 3, 7};
+int wahtIf = leet[4];	/* feel free to try out */
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{Looping through arrays}
+	The fact, that you can use a statement as index allows us to easily loop through an Array.
+	\begin{lstlisting}[numbers=none]
+int leet[] = {1, 3, 3, 7};
+for(int i = 0; i < §4§; i++)
+	printf("%d\n", leet[i]);
+\end{lstlisting}\ \\\ \\
+	\uncover<2->{There also is a way to determine the length of an array. But it's a little tricky and requires previous knowledge.}
 
+\end{frame}
+\section{sizeof}
+\subsection{}
+\begin{frame}[fragile]{Remember, Remember}
+	Old and busted	:
+	\begin{itemize}
+		\item the size of variables may differ on different architectures
+		\item the size of a char is \textbf{always} 1 byte
+	\end{itemize}
+	New hotness:
+	\begin{itemize}
+		\item you can get the size of a variable with the operator \textit{sizeof}
+		\item you can also get the size of a type with sizeof
+	\end{itemize}\ \\\ \\
+	\begin{lstlisting}[numbers=none]
+char a = 'a';
+int sizeOfA = sizeof a;		 /* 1 */
+int sizeOfInt = sizeof(int); /* depending on architecture */
+\end{lstlisting}
+	\textbf{Note:} You can \textbf{and should} leave the parentheses when passing an identifier but you have to use them in case you pass a type.
+\end{frame}
+\begin{frame}[fragile]{Sizeof an array}
+	What if?
+	\begin{lstlisting}[numbers=none]
+int leet[] = {1, 3, 3, 7};
+printf("%d\n",sizeof leet);
+\end{lstlisting}
+	
+	\uncover<2->{The output is the total numbers of bytes, the array reserves. Not the number of Elements it consists of. In case of a character array, these numbers are equal, but not for other array types.\\}
+	\uncover<2->{\ \\To get the number of Elements you have to divide the size of the array through the size of the array type (the size of one single element).}
+	\begin{uncoverenv}<2->
+		\begin{lstlisting}[numbers=none]
+int leet[] = {1, 3, 3, 7};
+int nrOfElements = sizeof leet / sizeof leet[0];
+\end{lstlisting}
+	\end{uncoverenv}
+\end{frame}
+\begin{frame}[fragile]{Iterate through every array}
+	With this previous knowledge we now can build a for loop for iterating through every kind of array:
+	\begin{lstlisting}[numbers=none]
+long array[24];
+...								/* fill array */
+for(int i = 0; i < (sizeof array / sizeof array[0]); i++)
+	printf("%l\n", array[i]);	/* print array */
+\end{lstlisting}
+\end{frame}
+\section{Exercise}
+\subsection{}
+\begin{frame}{Know your architecture}
+	\begin{itemize}
+		\item Write a program, that prints the size of every primitive datatype (in bytes).
+		\begin{itemize}
+			\item<2-> Hint: This actually is not about arrays.
+		\end{itemize}
+		\item \textbf{Experts:} Print the sizes additionally in bits.
+		\begin{itemize}
+			\item<3-> Hint: You may have to take a short break after solving this \textbf{very hard} task.
+			\item<4-> Hint: And maybe your sarcasmus detector is broken.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Lorem ipsum}
+	\begin{itemize}
+		\item Write a program that prints the following text by iterating through an array.
+		\begin{lstlisting}[numbers=none]
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+sed diam nonumy eirmod tempor invidunt ut labore et
+dolore magna aliquyam erat, sed diam voluptua. At vero
+eos et accusam et justo duo dolores et ea rebum.
+\end{lstlisting}
+		\begin{itemize}
+			\item<2-> Hint: You can copy the text from \url{http://loremipsum.de}
+			\item<3-> Hint: You'll need a bunch of \textit{'} and \textit{,}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+\section{Strings}
+\subsection{}
+\begin{frame}[fragile]{from chars to strings - TODO: better title}
+	In C, strings are handled as Zero terminated Character Arrays.\\
+	In memory, the string "Hello World!" would look as follows:\\
+	\begin{tikzpicture}[font=\scriptsize,x=1.4cm]
+		\draw (0,1) -- (7,1);
+		\draw (0,1) -- (0,1.3);
+		\draw (0,1.3) -- (7,1.3);
+		\draw (7,1) -- (7,1.3);		
+		
+		\draw[dashed] (.5,1) -- (.5,1.3);
+		\draw[dashed] (1,1) -- (1,1.3);
+		\draw[dashed] (1.5,1) -- (1.5,1.3);
+		\draw[dashed] (2,1) -- (2,1.3);
+		\draw[dashed] (2.5,1) -- (2.5,1.3);
+		\draw[dashed] (3,1) -- (3,1.3);
+		\draw[dashed] (3.5,1) -- (3.5,1.3);
+		\draw[dashed] (4,1) -- (4,1.3);
+		\draw[dashed] (4.5,1) -- (4.5,1.3);
+		\draw[dashed] (5,1) -- (5,1.3);
+		\draw[dashed] (5.5,1) -- (5.5,1.3);
+		\draw[dashed] (6,1) -- (6,1.3);
+		\draw[dashed] (6.5,1) -- (6.5,1.3);
+		
+		\node[blue, below=-.125em] at (0.25,1.3) {'H'};
+		\node[blue, below=-.125em] at (0.75,1.3) {'e'};
+		\node[blue, below=-.125em] at (1.25,1.3) {'l'};
+		\node[blue, below=-.125em] at (1.75,1.3) {'l'};
+		\node[blue, below=-.125em] at (2.25,1.3) {'o'};
+		\node[blue, below=-.125em] at (2.75,1.3) {' '};
+		\node[blue, below=-.125em] at (3.25,1.3) {'W'};
+		\node[blue, below=-.125em] at (3.75,1.3) {'o'};
+		\node[blue, below=-.125em] at (4.25,1.3) {'r'};
+		\node[blue, below=-.125em] at (4.75,1.3) {'l'};
+		\node[blue, below=-.125em] at (5.25,1.3) {'d'};
+		\node[blue, below=-.125em] at (5.75,1.3) {'!'};
+		\node[blue, below=-.125em] at (6.25,1.3) {'\textbackslash0'};
+	\end{tikzpicture}
+	\begin{itemize}
+		\item Note that '\textbackslash0' is different from the number '0'.
+	\end{itemize}
+	\ \\\ \\To represent it in an array, you could do the following:
+	\begin{lstlisting}[numbers=none]
+char hello[] = {'H', 'e', 'l', 'l', 'o', ' ',
+				'W', 'o', 'r', 'l', 'd', '!', '\0'};
+\end{lstlisting}\ \\
+	\ \\But there is a short form for that:
+	\begin{lstlisting}[numbers=none]
+char hello[] = "Hello World!";
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{Printing strings}
+	There is a placeholder for strings in printf: \textit{\%s}\\
+	It expects just the name of the array:
+	\2begin{lstlisting}[numbers=none]
+char hello[] = "Hello World!";
+printf("%s\n", hello);
+\end{lstlisting}
+	\begin{itemize}
+		\item Now, take your Lorem ipsum program and reduce it to 2 lines.
+	\end{itemize}
+\end{frame}
+
+\section{Multidimensional arrays}
+\subsection{}
+\begin{frame}{}
+
+\end{frame}
+\section{Exercise}
+\subsection{}
+\begin{frame}{}
+
+\end{frame}
 % nothing to do from here on
 \end{document}
