@@ -287,7 +287,7 @@ eos et accusam et justo duo dolores et ea rebum.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
-\section{Strings}
+\section{Strings n' more}
 \subsection{}
 \begin{frame}[fragile]{from chars to strings - TODO: better title}
 	In C, strings are handled as Zero terminated Character Arrays.\\
@@ -342,7 +342,7 @@ char hello[] = "Hello World!";
 \begin{frame}[fragile]{Printing strings}
 	There is a placeholder for strings in printf: \textit{\%s}\\
 	It expects just the name of the array:
-	\2begin{lstlisting}[numbers=none]
+	\begin{lstlisting}[numbers=none]
 char hello[] = "Hello World!";
 printf("%s\n", hello);
 \end{lstlisting}
@@ -350,16 +350,65 @@ printf("%s\n", hello);
 		\item Now, take your Lorem ipsum program and reduce it to 2 lines.
 	\end{itemize}
 \end{frame}
-
-\section{Multidimensional arrays}
-\subsection{}
-\begin{frame}{}
-
+\begin{frame}[fragile]{String input}
+	You \textbf{Could} use \textit{scanf} for string input, but it's kind of a mess. You better use \textit{fgets}:
+	\begin{lstlisting}[numbers=none]
+char input[42];
+fgets(input, sizeof input, stdin)
+\end{lstlisting}
+	\begin{itemize}
+		\item fgets reads up to size-1 characters (here: 42-1), and writes the '\textbackslash0' at the and of the array.
+		\item it stops reading after a newline.
+		\item stdin is the standard input
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Array of arrays}
+	\begin{itemize}
+		\item Every subarray is of same type
+		\item Declaration:
+		\begin{lstlisting}[numbers=none]
+char arr[3][4];
+  /* an array containing 3 arrays containing 4 chars */
+\end{lstlisting}
+		\item Access:
+		\begin{lstlisting}[numbers=none]
+arr[0][0] = 'f'; /* first char of first array is 'f' */
+arr[1] = "bar";
+arr[2] = {'b', 'o', 'z', '\0'};
+\end{lstlisting}
+		\item Definition:
+		\begin{lstlisting}[numbers=none]
+char arr[][] = {{'f', 'o', 'o', '\0'},
+				{'b', 'a', 'r', '\0'},
+				{'b', 'o', 'z', '\0'}};
+\end{lstlisting}
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Passing arrays}
+	An array is passed by its name, no big deal. The real question is, how a function is defined, that takes an array as argument.
+	\begin{lstlisting}[numbers=none]
+int foo(char arr[]) {
+	printf("%d\n", arr[0]);
+}
+\end{lstlisting}
+	\begin{itemize}
+		\item \textbf{But:} If you want to get the size of the array in this function, you'll get a false value. The reason for this is discussed later.\\
+		$\rightarrow$ You may want to pass the size as a 2nd value
+	\end{itemize}
 \end{frame}
 \section{Exercise}
 \subsection{}
-\begin{frame}{}
-
+\begin{frame}{Array printing function}
+	\begin{itemize}
+		\item Write a function that prints an Integer array
+		\begin{itemize}
+			\item<2-> Hint: Don't forget, \textit{sizeof} is no help here.
+		\end{itemize}
+		\item Write a function that prints a matrix
+		\begin{itemize}
+			\item<3-> Hint: Loopception.
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 % nothing to do from here on
 \end{document}
