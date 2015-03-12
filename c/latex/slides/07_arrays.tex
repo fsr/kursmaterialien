@@ -184,6 +184,18 @@ leet[3] = 7;
 \end{lstlisting}
 	\textbf{Note:} The first index is 0, the last one is \textit{size} - 1
 \end{frame}
+\begin{frame}[fragile]{Partial initialization}
+	If you declare an array, memory gets reserved. This Memory is full of trash data. Before you initialize the array, you can not determine what's in.\\
+	\ \\
+	You can initialize an array partially. If you do so, the rest gets initialized with 0.
+	\begin{lstlisting}[numbers=none]
+int arr[5] = {1, 3};	/* initializes {1, 3, 0, 0, 0} */
+\end{lstlisting}\ \\\ \\
+	To clear an array during its initialization use the following syntax:
+	\begin{lstlisting}[numbers=none]
+char clear[255] = {0};
+\end{lstlisting}
+\end{frame}
 \begin{frame}[fragile]{Access}
 	You access an Array element, like defining it, through its index.
 	\begin{lstlisting}[numbers=none]
@@ -289,7 +301,7 @@ eos et accusam et justo duo dolores et ea rebum.
 \end{frame}
 \section{Strings n' more}
 \subsection{}
-\begin{frame}[fragile]{from chars to strings - TODO: better title}
+\begin{frame}[fragile]{Oh, hello again}
 	In C, strings are handled as Zero terminated Character Arrays.\\
 	In memory, the string "Hello World!" would look as follows:\\
 	\begin{tikzpicture}[font=\scriptsize,x=1.4cm]
@@ -354,10 +366,10 @@ printf("%s\n", hello);
 	You \textbf{Could} use \textit{scanf} for string input, but it's kind of a mess. You better use \textit{fgets}:
 	\begin{lstlisting}[numbers=none]
 char input[42];
-fgets(input, sizeof input, stdin)
+fgets(input, sizeof input, stdin);
 \end{lstlisting}
 	\begin{itemize}
-		\item fgets reads up to size-1 characters (here: 42-1), and writes the '\textbackslash0' at the and of the array.
+		\item fgets reads up to size-1 characters (here: 42-1), and writes the '\textbackslash0' at the and of the array input.
 		\item it stops reading after a newline.
 		\item stdin is the standard input
 	\end{itemize}
@@ -400,15 +412,31 @@ int foo(char arr[]) {
 \subsection{}
 \begin{frame}{Array printing function}
 	\begin{itemize}
-		\item Write a function that prints an Integer array
+		\item Write a function that prints an Integer array.
 		\begin{itemize}
 			\item<2-> Hint: Don't forget, \textit{sizeof} is no help here.
 		\end{itemize}
-		\item Write a function that prints a matrix
+		\item Write a function that prints an integer matrix.
 		\begin{itemize}
 			\item<3-> Hint: Loopception.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
+\begin{frame}{To equal or not to equal}
+	\begin{itemize}
+		\item Write a function, that checks two arrays for equality.
+		\item \textbf{Experts:} Write a Program, that checks two multidimensional arrays for equality.
+	\end{itemize}
+\end{frame}
+\begin{frame}{Reverse}
+	\begin{itemize}
+		\item Write a program that takes a string input and outputs this string reversed.
+		\begin{itemize}
+			\item<2-> Hint: What happens if you print '\textbackslash0'?
+		\end{itemize}
+		\item \textbf{Experts:} print the reversed output with spaces between (and \textbf{only} between) the letters.
+	\end{itemize}
+\end{frame}
+
 % nothing to do from here on
 \end{document}
