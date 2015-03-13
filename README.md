@@ -16,6 +16,8 @@ The folders containing the actual source code for the ruby and C course slides h
 - new [Ruby lesson source location](https://github.com/fsr/ruby-lessons)
 - new [C lesson source location](https://github.com/fsr/c-lessons)
 
+_So have the templates, new [template repository location](https://github.com/fsr/lesson-templates)._
+
 ## Main Repository structure
 The repository follows a strict structure:
 * **templates/** contains needed templates for the initialization of courses
