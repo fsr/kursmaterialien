@@ -217,7 +217,7 @@ void foo() {
 	\begin{lstlisting}[numbers=none]
 free(void *ptr);
 \end{lstlisting}
-	Pass any pointer to previously allocated memory to \textit{free()} and it gets realeased. If you pass pointers on other things, undefined behaviour occurs (most likely programm crashes).
+	Pass any pointer to previously allocated memory to \textit{free()} and it gets realeased. If you pass pointers on other things, undefined behaviour occurs (most likely program crashes).
 \end{frame}
 
 \section{Dynamic arrays}
@@ -225,7 +225,7 @@ free(void *ptr);
 \begin{frame}[fragile]{Reserving large junks}
 	To get a dynamic array of a certain \textit{type} and \textit{length}, you have to
 	\begin{itemize}
-		\item Pass the block size $length * sizeof(int)$ to \textit{malloc()}
+		\item Pass the block size $length * sizeof(type)$ to \textit{malloc()}
 		\item Assign the return value to a pointer to \textit{type}
 	\end{itemize}\ \\
 	\ \\
@@ -236,7 +236,7 @@ int *field = malloc(42 * sizeof(int));
 	\ \\
 	Since the size of your dynamically allocated array is unknown at compile time, you cannot use \textit{sizeof} to get its length. Save it in its own variable!\\
 	\ \\
-	With the help of pointer arithmetic, you can now with the dynamic array like with a "normal" one.
+	With the help of pointer arithmetic, you can use the dynamic array like a "normal" one.
 	
 \end{frame}
 \begin{frame}[fragile]{The fancy alternative}
@@ -244,7 +244,7 @@ int *field = malloc(42 * sizeof(int));
 void *calloc(size_t nmemb, size_t size);
 \end{lstlisting}
 	\begin{itemize}
-		\item Allocates a block of $nmemb * size$ bytes, where \textit{nmemb} is supposed the array's length and \textit{size} the size its type.
+		\item Allocates a block of $nmemb * size$ bytes, where \textit{nmemb} is supposed to be the array's length and \textit{size} the size its type.
 		\item The whole block is filled with \textit{0}s
 	\end{itemize}
 	\ \\
@@ -263,11 +263,11 @@ int *field = calloc(field_length, sizeof(int));
 \begin{frame}[fragile]{Resizing arrays}
 	Now we come to the point that motivated us to use dynamic arrays:\\
 	\ \\
-	\begin{lstlisting}
+	\begin{lstlisting}[numbers=none]
 void *realloc(void *ptr, size_t size);
 \end{lstlisting}
 	\begin{itemize}
-		\item \textit{ptr} is pointer to a dynamically allocated memory block
+		\item \textit{ptr} is a pointer to a dynamically allocated memory block
 		\item \textit{size} is the wanted new size of the memory block
 		\item The return value is a pointer to the resized block
 	\end{itemize} \ \\
@@ -275,7 +275,7 @@ void *realloc(void *ptr, size_t size);
 	Note that the new \textit{size} can be greater or smaller than the old one!
 	\begin{itemize}
 		\item If it's smaller, you may lose some data at the end of the block
-		\item If it's greater, the block may be at a different location in the memory $\rightarrow$ \textit{ptr} is freed then, also the new area is not initialized
+		\item If it's greater, the block may be at a different location in the memory $\rightarrow$ \textit{ptr} is freed then, also the additional bytes are not initialized
 	\end{itemize}
 \end{frame}
 \begin{frame}[fragile]{Clean up your code}
@@ -325,27 +325,26 @@ $ man 3 strncat
 		\item Each string is put at the front so that the result is in reversed order.
 		\begin{itemize}
 			\item<2-> Hint: end the input phase when a '\textbackslash n' is read (empty line).
-			\item<3-> Hint: always check if you buffer is large enough and resize it, if needed,
+			\item<3-> Hint: always check if your buffer is large enough and resize it, if needed,
 		\end{itemize}
 		\item \textbf{Experts}: at the end, let the user enter one last string. Check, if that one occures in the string you have put together.
 		\begin{itemize}
-			\item<2-> \textit{strstr()} my be an option.
+			\item<2-> \textit{strstr()} may be an option.
 		\end{itemize}
 	\end{itemize}		
 \end{frame}
 \begin{frame}{Vector operations}
 	\begin{itemize}
-		\item Write a program that takes two vectors as input.
-		\item The number of elements in each vector is upto the user.
-		\item Calculate their sum and print the result.
+		\item Write a program that takes two vectors as input and prints their sum.
+		\item The number of elements in each vector is up to the user.
 		\begin{itemize}
-			\item<2-> Hint: You need some conventions to allow the user to tell you when the input of a vector is finished.
-			\item<3-> Hint: Think of possible input errors, e.g. one vector having more elements.
+			\item<2-> Hint: you need some conventions to allow the user to tell you when the input of a vector is finished.
+			\item<3-> Hint: think of possible input errors, e.g. one vector having more elements.
 		\end{itemize}
 		\item \textbf{Experts}: do the same with two matrices
 		\begin{itemize}
-			\item<2-> Hint: A 2D dynamic array is a dynamic array of pointers. Each of those pointers has its own dynamic array allocated to it.
-			\item<3-> Hint: You need a lot of conventions!
+			\item<2-> Hint: a 2D dynamic array is a dynamic array of pointers. Each of those pointers has its own dynamic array allocated to it.
+			\item<3-> Hint: you need a lot more conventions!
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -356,16 +355,16 @@ $ man 3 strncat
        -----    
        |/  o 
        |  ^W^
-       |  / \		word: game ove_
+       |  / \		word: game o_e_
        |     		wrong: hvfnwitc
      -----   
     /     \
    /       \
 ===============
 \end{lstlisting}
-	\textbf{Experts}: Have a list of words in the source code and let the program randomly choose one at the start.\\
+	\textbf{Experts}: Have a list of possible words in the source code and let the program randomly choose one at the start.\\
 	\ \\
-	Since this is the last task, there are no hints. Good luck!
+	Hint: \textit{strncmp()} compares two strings.
 \end{frame}
 % nothing to do from here on
 \end{document}
