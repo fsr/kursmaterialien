@@ -25,36 +25,42 @@
 \begin{frame}{Everything's a number}
 	In C, the concept of variables has been adopted from mathematics.
 	\begin{itemize}
-		\item used to remember values during program execution
-		\item stored in the memory
-		\item accessed by an identifier
-		\item for the computer everything looks like a number (sequence of bits)
-		\item but is interpreted as different data types
+		\item Used to remember values during program execution
+		\item Stored in the memory
+		\item Accessed by an identifier
+		\item For the computer everything looks like a number (sequence of bits)
+		\item But is interpreted as different data types
 	\end{itemize}
 \end{frame}
 \begin{frame}[fragile]{Use}
-	Declaration: \textit{$<$type$>$ $<$identifier$>$};
-	\begin{lstlisting}[numbers=none,belowskip=-1em]
-	int number;
+	Declaration:
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
+type identifier;
 \end{lstlisting}
-	Assignment: \textit{$<$identifier$>$ = $<$value$>$};
-	\begin{lstlisting}[numbers=none,belowskip=-1em]
-	number = 42;
+	Assignment: 
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
+identifier = value;
 \end{lstlisting}
-	Definition (all at once): \textit{$<$type$>$ $<$identifier$>$ = $<$value$>$};
+	Definition (all at once):
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
+type identifier = value;
+\end{lstlisting}
+	Example:
 	\begin{lstlisting}[numbers=none]
-	int another_number = 23;
+int number;					/* declaration */
+number = 42;				/* assignment */
+int another_number = 23;	/* definition */
 \end{lstlisting}
 \end{frame}
 \begin{frame}[fragile]{Saving lines}
 	Multiple declarations
-	\begin{lstlisting}[numbers=none,belowskip=-1em]
-	int number, another_number;
+	\begin{lstlisting}[numbers=none]
+int number, another_number;
 \end{lstlisting}
 	Multiple Definitions
-	\begin{lstlisting}[numbers=none, belowskip=0em]
-	int number = 42, anothernumber = 23;
-\end{lstlisting}
+	\begin{lstlisting}[numbers=none]
+int number = 42, anothernumber = 23;
+\end{lstlisting}\ \\\ \\
 But be careful:
 \begin{columns}[c]
 	\column{.4\textwidth}
@@ -75,31 +81,31 @@ int a, b = 23;
 \subsection{}
 \begin{frame}{Integer numbers}
 	\begin{itemize}
-		\item keywords: \textit{int}, \textit{short}, \textit{long}
-		\item stored as a binary number with fixed length
-		\item can be \textit{signed}(default) or \textit{unsigned} 
-		\item range: 0 to $2^{length}-1$ (unsigned) or $-2^{length}$ to $2^{length-1}-1$(signed)
-		\item actual size of \textit{int}, \textit{short}, \textit{long} depends on architechture
+		\item Keywords: \textit{int}, \textit{short}, \textit{long}
+		\item Stored as a binary number with fixed length
+		\item Can be \textit{signed}(default) or \textit{unsigned} 
+		\item Range: 0 to $2^{length}-1$ (unsigned) or $-2^{length}$ to $2^{length-1}-1$(signed)
+		\item Actual size of \textit{int}, \textit{short}, \textit{long} depends on architechture
 	\end{itemize}
 \end{frame}
 \begin{frame}{Floating point numbers}
 	\begin{itemize}
-		\item keywords: \textit{float}, \textit{double}, \textit{long double}
-		\item stored as specified in \textit{IEEE 754 Standard} TL;DR
-		\item special values for $\infty$, $-\infty$, NaN
-		\item useful for fractions and very large numbers
-		\item type a decimal point instead of a comma!
+		\item Keywords: \textit{float}, \textit{double}, \textit{long double}
+		\item Stored as specified in \textit{IEEE 754 Standard} TL;DR
+		\item Special values for $\infty$, $-\infty$, NaN
+		\item Useful for fractions and very large numbers
+		\item Type a decimal point instead of a comma!
 	\end{itemize}
 \end{frame}
 \begin{frame}[fragile]{Characters}
 	\begin{itemize}
-		\item keyword: \textit{char}
-		\item can be \textit{signed}(default) or \textit{unsigned}
-		\item range: 0 to 255 (unsigned) or -128 to 127 (signed)	
-		\item size: 8 bit (on almost every architechture)
-		\item intended to represent a symbol
-		\item stores its \textit{ASCII} code number (e.g. 'A' $\Rightarrow$ 65)
-		\item you can define a char either by its ASCII code number or by its symbol:
+		\item Keyword: \textit{char}
+		\item Can be \textit{signed}(default) or \textit{unsigned}
+		\item Range: 0 to 255 (unsigned) or -128 to 127 (signed)	
+		\item Size: 8 bit (on almost every architechture)
+		\item Intended to represent a symbol
+		\item Stores its \textit{ASCII} code number (e.g. 'A' $\Rightarrow$ 65)
+		\item You can define a char either by its ASCII code number or by its symbol:
 	\end{itemize}
 	\begin{lstlisting}[numbers=none]
 char a = 65;
@@ -110,11 +116,11 @@ char b = 'A';	/* use single quotation marks */
 \subsection{}
 \begin{frame}{Valid identifiers}
 	\begin{itemize}
-		\item consist of English letters (no \textit{ß}, \textit{ä}, \textit{ö}, \textit{ü}), numbers and underscore (\_)
-		\item start with a letter or underscore
-		\item are case sensitive (\textit{number} differs from \textit{Number})
-		\item are unique - must not be redeclared
-		\item must not be reserved words (e.g \textit{int}, \textit{return})
+		\item Consist of English letters (no \textit{ß}, \textit{ä}, \textit{ö}, \textit{ü}), numbers and underscore (\_)
+		\item Start with a letter or underscore
+		\item Are case sensitive (\textit{number} differs from \textit{Number})
+		\item Are unique - must not be redeclared
+		\item Must not be reserved words (e.g \textit{int}, \textit{return})
 	\end{itemize}
 \end{frame}
 \begin{frame}[fragile]{Speaking identifiers}
@@ -157,7 +163,7 @@ volume = (1 / 3) * length * length * height;
 }
 \end{lstlisting}
 \end{frame}
-\begin{frame}[fragile]{the difference between \textit{same} and \textit{equal}}
+\begin{frame}[fragile]{The difference between \textit{same} and \textit{equal}}
 	What if?
 	\begin{lstlisting}
 #include <stdio.h>
@@ -173,6 +179,15 @@ int main(char argc, char* argv[]) {
 }
 \end{lstlisting}
 	Try it yourself and discuss the output.
+\end{frame}
+\begin{frame}{A few words on style}
+	\begin{itemize}
+		\item Use speaking identifiers
+		\item Stay in one language (English recommended)
+		\item Decide wheter to use \textit{camelCaseIdentifiers} or \textit{underscore\_identifiers}.\\
+		(inconsistence $\cong$ incompetence)
+		\item Indent blocks
+	\end{itemize}
 \end{frame}
 %TODO auch bei 02_variables --> "A few words on style-Folie am Ende von Identifiers, sagt auch, dass Blöcke einen Tab indented werden sollen
 \section{Variable I/O}
@@ -207,7 +222,7 @@ You can insert any amount of placeholders. For each placeholder, you have to pas
 	\end{tabular}
 \end{frame}
 \begin{frame}[fragile]{Variable input}
-	scanf() is another useful function from the standard library.
+	\textit{scanf()} is another useful function from the standard library.
 	\begin{itemize}
 		\item Like \textit{printf()}, it is declared in \textit{stdio.h}
 		\item Like \textit{printf()}, it has a format string with placeholders
@@ -225,11 +240,11 @@ scanf("%d", &i);
 	\begin{itemize}
 		\item \textit{scanf()} uses the same placeholders as \textit{printf()}
 		\item You must type an \textit{\&} before each variable identifier \\
-			(will be explained that later)
+			(will be explained later)
 		\item If you read a number (using \%d, \%u etc.), interpretation
 		\begin{itemize}
-			\item starts at first digit
-			\item ends before last non digit character
+			\item Starts at first digit
+			\item Ends before last non digit character
 		\end{itemize}
 		\item If you use \%c, the first character of the user input is interpreted (this may be a ' ' as well!)
 	\end{itemize}
