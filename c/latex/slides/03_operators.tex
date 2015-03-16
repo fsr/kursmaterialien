@@ -39,7 +39,7 @@ Got the idea?\\
 		\item +, -, *, / as all of you should know
 		\item \% is the modulo (remainder) operator
 		\item *, /, \% get evaluated before +, -
-		\item operations in (  ) are of higher precedence
+		\item Operations in (  ) are of higher precedence
 	\end{itemize}
 	\ \\\ \\Something to try out and think about:
 	\begin{lstlisting}[numbers=none]
@@ -107,7 +107,9 @@ i1 / f;		/* result is float, actual division */
 	! \ $>$ \ \&\& \ $>$ \ $||$ 
 \end{frame}
 \begin{frame}[fragile]{Seems logic}
-	How do you get NAND, NOR and XOR?
+	\begin{itemize}
+		\item How do you get NAND, NOR and XOR?
+	\end{itemize}
 	\begin{uncoverenv}<2->
 		\begin{lstlisting}[numbers=none]
 int a, b;
@@ -123,7 +125,10 @@ a != b;		/* XOR */
 \begin{frame}[fragile]{A sign meant...}
 	We already know the assignment operator.\\
 	Assignments are expressions, too, and expressions can be assigned to variables.\\\ \\
-	The general syntax is:	\textit{$<$identifier$>$ = $<$expression$>$}\\\ \\
+	The general syntax is:
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
+identifier = expression
+\end{lstlisting}\ \\\ \\
 	
 	\begin{uncoverenv}<2->
 		Consider:
@@ -163,11 +168,23 @@ int a = C++;	/* a is 42 */
 int b = ++C;	/* b is 44 */
 \end{lstlisting}
 \end{frame}
-\begin{frame}{The stage is yours}
+\section{Exercise}
+\subsection{}
+\begin{frame}{Calculator light}
 	\begin{itemize}
 		\item Write a Program that asks the user for two decimal numbers and prints their sum, difference, product, integer quotient and remainder.
+		\item \textbf{Experts:} Let the program additionally print the actual quotient.
+	\end{itemize}
+\end{frame}
+\begin{frame}{Desrever}
+	\begin{itemize}
 		\item Write a Program that asks the user for 5 characters and prints them in reversed order.
+	\end{itemize}
+\end{frame}
+\begin{frame}{You spin me round}
+	\begin{itemize}
 		\item Write a Program that calculates the area of a circle.\\(Let's assume $\pi$ == 3.14)
+		\item \textbf{Experts:} Let the program additionally calculate the circumference.
 	\end{itemize}
 \end{frame}
 % nothing to do from here on
