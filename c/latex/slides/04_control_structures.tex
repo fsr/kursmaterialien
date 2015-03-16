@@ -7,7 +7,9 @@
 }
 \usepackage{tikz}
 \definecolor{orange}{RGB}{255,127,0}
-
+\lstset{
+  moredelim=**[is][\itshape{}]{§}{§},
+}
 % nothing to do here
 \title{\topic}
 \supertitle{\course}
@@ -31,18 +33,18 @@
 \end{frame}
 \begin{frame}[fragile]{if...else}
 	To make decisions during run time, you can use the truth value of an expression:
-	\begin{lstlisting}[numbers=none]
-if (<condition>)
-	<statement 1>;
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
+if (condition)
+	statement1;
 else
-	<statement 2>;
+	statement2;
 \end{lstlisting}
-	Now \textbf{statement 1} is only executed if the truth value of \textbf{condition} is \textit{true}. Otherwise \textbf{statement 2} is executed. The \textit{else} part is optional.\\\ \\
+	Now \textbf{statement1} is only executed if the truth value of \textbf{condition} is \textit{true}. Otherwise \textbf{statement2} is executed. The \textit{else} part is optional.\\\ \\
 	For multiple statements in the \textit{if} or \textit{else body}, use braces:
-	\begin{lstlisting}[numbers=none]
-if (<condition>) {
-	<statement 1>;
-	<statement 2>;
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
+if (condition) {
+	statement1;
+	statement2;
 }
 \end{lstlisting}
 \end{frame}
@@ -69,41 +71,41 @@ if (<condition>) {
 			\node at (3,-3)[below]{st.4};
 		\end{tikzpicture}
 		\column{0.5\textwidth}
-			\begin{lstlisting}[numbers=none]
-if (<condition 1>)
-	<statement 1>;
-else if (<condition 2>)
-	<statement 2>;
-else if (<condition 3>)
-	<statement 3>;
+			\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
+if (condition1)
+	statement1;
+else if (condition2)
+	statement2;
+else if (condition3)
+	statement3;
 else
-	<statement 4>;
+	statement4;
 \end{lstlisting}
 	\end{columns}
 \end{frame}
 \begin{frame}[fragile]{switch}
 	If you have to check one variable for many constant values, \textit{switch case} is your friend:
-	\begin{lstlisting}[numbers=none]
-switch (<variable>) {
-	case <option 1>: <statement 1>; break;
-	case <option 2>: <statement 2>; break;
-	case <option 3>: <statement 3>; break;
-	default: <statement 4>; break;
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
+switch (variable) {
+	case option1: statement1; break;
+	case option2: statement2; break;
+	case option3: statement3; break;
+	default: statement4; break;
 }
 \end{lstlisting}
 	\begin{itemize}
-	\item \textit{case $<$option$>$} defines a jump label
-	\item more than one statement after it possible without braces
-	\item all statements until the next \textit{break;} will be executed
+	\item \textit{case option} defines a jump label
+	\item More than one statement after it possible without braces
+	\item All statements until the next \textit{break;} will be executed
 \end{itemize}	 
 \end{frame}
 \begin{frame}[fragile]{A few words on style}
 
 	\begin{itemize}
 		\item Typing \textbf{if (cond)} instead of \textbf{if(cond)} helps people to differantiate between control structures and function calls faster
-		\item when starting a new block, you should type ) \{ rather than )\{
-		\item don't start a new block for a single statement
-		\item don't put statements and conditions on the same line
+		\item When starting a new block, you should type ) \{ rather than )\{
+		\item Don't start a new block for a single statement
+		\item Don't put statements and conditions on the same line
 	\end{itemize}
 	\begin{lstlisting}[numbers=none]
 if(cond){ statement; }	/* bad style */
@@ -121,18 +123,18 @@ if (cond)
 		\item if you use a block anywhere in an \textbf{if ... else} structure, put all blocks of this structure in braces
 	\end{itemize}
 	\begin{lstlisting}[numbers=none]
-if (cond)		/* bad style, inconsistent */
-	statement;
+if (§cond§)		/* bad style, inconsistent */
+	§statement§;
 else {
-	statement;
-	statement;
+	§statement§;
+	§statement§;
 }
 
-if (cond) {		/* way better style */
-	statement;
+if (§cond§) {		/* way better style */
+	§statement§;
 } else {
-	statement;
-	statement;
+	§statement§;
+	§statement§;
 }
 \end{lstlisting}
 	\begin{itemize}
@@ -167,18 +169,18 @@ if (cond) {		/* way better style */
 \subsection{}
 \begin{frame}[fragile]{Loops}
 	To repeat statements until a certain condition is met, C offers 3 different loops.
-	\begin{lstlisting}[numbers=none]
-while (<condition>)
-	<statement>;
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
+while (condition)
+	statement;
 \end{lstlisting}
-	\begin{lstlisting}[numbers=none]
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
 do
-	<statement>;
-while (<condition>);
+	statement;
+while (condition);
 \end{lstlisting}
-	\begin{lstlisting}[numbers=none]
-for (<initialization>; <condition>; <statement>)
-	<statement>;
+	\begin{lstlisting}[numbers=none,basicstyle=\itshape\footnotesize]
+for (initialization; condition; statement)
+	statement;
 \end{lstlisting}
 	For multiple statements again, use braces.
 \end{frame}
@@ -191,12 +193,12 @@ while (i > 0)
 printf("done\n");
 \end{lstlisting}
 	\begin{enumerate}[<+(1)->]
-		\item check (i $>$ 0) $\rightarrow$ \textbf{true} $\rightarrow$ go to line 3
-		\item decrement i $\rightarrow$ i now is \textbf{1}, go back to line 2
-		\item check (i $>$ 0) $\rightarrow$ \textbf{true} $\rightarrow$ go to line 3
-		\item decrement i $\rightarrow$ i now is \textbf{0}, go back to line 2
-		\item check (i $>$ 0) $\rightarrow$ \textbf{false} $\rightarrow$ go to line 4
-		\item print \textbf{done}
+		\item Check (i $>$ 0) $\rightarrow$ \textbf{true} $\rightarrow$ go to line 3
+		\item Decrement i $\rightarrow$ i now is \textbf{1}, go back to line 2
+		\item Check (i $>$ 0) $\rightarrow$ \textbf{true} $\rightarrow$ go to line 3
+		\item Decrement i $\rightarrow$ i now is \textbf{0}, go back to line 2
+		\item Check (i $>$ 0) $\rightarrow$ \textbf{false} $\rightarrow$ go to line 4
+		\item Print \textbf{done}
 	\end{enumerate}
 \end{frame}
 \begin{frame}[fragile]{Meanwhile...}
@@ -223,9 +225,9 @@ while (i < 1);
 \begin{frame}[fragile]{for}
 	The For-Loop is comfortable for iterating. It takes three arguments.
 	\begin{itemize}
-		\item initialization
-		\item condition
-		\item iteration statement
+		\item Initialization
+		\item Condition
+		\item Iteration statement
 	\end{itemize}
 	To understand how it's working, consider a program printing the numbers 1 to 10:
 	\begin{lstlisting}[numbers=none]
@@ -234,8 +236,8 @@ for (i = 1; i <= 10; i++)
 	printf("%d\n", i);
 \end{lstlisting}
 	\begin{itemize}
-		\item i is called an \textit{index} whit iterates from the given start to a given end value
-		\item i, j, k are commonly used identifiers for the index
+		\item \textit{i} is called an \textit{index} whit iterates from the given start to a given end value
+		\item \textit{i, j, k} are commonly used identifiers for the index
 	\end{itemize}
 \end{frame}
 \begin{frame}[fragile]{Saving code lines}
@@ -271,11 +273,11 @@ Note: the semicolons are still there.
 \end{frame}
 \begin{frame}[fragile]{A few words on style}
 	\begin{itemize}
-		\item again, only use braces when there's more than one statement
-		\item if you skip the loop body
+		\item Again, only use braces when there's more than one statement
+		\item If you skip the loop body
 		\begin{itemize}
-			\item leave a comment in your code
-			\item use an extra line for the empty statement
+			\item Leave a comment in your code
+			\item Use an extra line for the empty statement
 		\end{itemize}
 	\end{itemize}
 		\begin{lstlisting}[numbers=none]
@@ -290,11 +292,11 @@ for (i = 1; i < 9; printf("%d\n", i++))		/* clear */
 \begin{frame}{Customized Sheldon}
 	\begin{itemize}
 		\item Write a program, that lets the user decide how often \textit{"Knock, knock, knock - Penny?"} is printed.
-		\item \textbf{Experts:} let the program additionally ask how often Sheldon knocks each time.
+		\item \textbf{Experts:} Let the program additionally ask how often Sheldon knocks each time.
 		\begin{itemize}
 			\item Take care, that the first "Knock" starts with a Capital K
-			\item<2-> Hint: you can use loops inside loops
-			\item<3-> Hint: you should use a different index for the inner loop
+			\item<2-> Hint: You can use loops inside loops
+			\item<3-> Hint: You should use a different index for the inner loop
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -303,7 +305,7 @@ for (i = 1; i < 9; printf("%d\n", i++))		/* clear */
 		\item Write a program that takes two numbers $a, b$ from the user and calculates $a^b$ and $b^a$
 		\item \textbf{Experts:} Write a program that calculates the factorial of the user input.
 		\begin{itemize}
-			\item<2-> Hint: the factor changes in each step.
+			\item<2-> Hint: The factor changes in each step.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -311,8 +313,8 @@ for (i = 1; i < 9; printf("%d\n", i++))		/* clear */
 	\begin{itemize}
 		\item Write a program, that prints the $n$th fibonacci number.
 		\begin{itemize}
-			\item a fibonacci number is the sum of its two predecessors in the fibonacci sequence
-			\item the fibonacci sequence starts with 0,1,\dots
+			\item A fibonacci number is the sum of its two predecessors in the fibonacci sequence
+			\item The fibonacci sequence starts with 0,1,\dots
 			\item<2-> Hint: One variable is not enough to store all the information you need to calculate the next fibonacci number.
 		\end{itemize}
 		\item \textbf{Experts:} Also calculate the sum of all fibonacci numbers $\leq n$.
